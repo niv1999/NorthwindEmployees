@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add a new employee
+{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    {% if error %}
+        <div class="error">
+            <p class="error-message">
+                {{error}}
+            </p>
+        </div>
+        <hr>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        <label>First Name:</label>
+        <input type="text" name="first_name" class="form-control" required minlength="2" maxlength="40">
+
+        <label>Last Name:</label>
+        <input type="text" name="last_name" class="form-control" required minlength="2" maxlength="100">
+
+        <label>Title of Courtesy:</label>
+        <input type="text" name="title_of_courtesy" class="form-control" required minlength="3" maxlength="100">
+
+        <label>Job Title:</label>
+        <input type="text" name="title" class="form-control" required minlength="2" maxlength="150">
+
+        <label>Birth Date:</label>
+        <input type="date" name="birth_date" class="form-control" required>
+
+        <label>Hire Date:</label>
+        <input type="date" name="hire_date" class="form-control" required>
+
+        <label>Country Name: </label>
+        <select class="form-select" name="country_id" id="country" onchange="updateCities()" required>
+            <option value="0" disabled selected>Select Country</option>
+            {% for country in countries%}
+                <option value="{{ country.id }}" data-country-id="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>City Name: </label>
+        <select class="form-select" name="city_id" id="city" data-cities="{{ cities_json }}" required>
+            <option value="0" selected disabled>Select City</option>
+        </select>
+
+        <label>Address: </label>
+        <input type="text" name="address" class="form-control" required minlength="5" maxlength="200">
+
+        <label>Postal Code: </label>
+        <input type="text" name="postal_code" class="form-control" required minlength="2" maxlength="20">
+
+        <label>Phone: </label>
+        <input type="text" name="phone" class="form-control" required minlength="7" maxlength="20">
+
+        <label>Notes: </label>
+        <textarea class="form-control" name="notes" required minlength="5" maxlength="1000"></textarea>
+
+        <label>Add Image: </label>
+        <input type="file" name="image" accept="image/*" class="form-control" required>
+
+        <button class="btn btn-primary w-100">Add Employee</button>
+    </form>
+    
+</div>
+
+
+{% endblock content %}

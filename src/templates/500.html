@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Unknown Error
+{% endblock title %}
+
+{% block content %}
+<div>
+    <h1>500 ERROR PAGE</h1>
+    <br>
+    <h2><b>{{error}}</b></h2>
+    <br>
+    <h3>Some error has occured, please try again later.</h3>
+    <hr>
+    <div class="link-container">
+        <a href="{{ url_for('home_view.home') }}" class="more-link">Back to Home Page 🚀</a>
+    </div>
+</div>
+{% endblock content %}

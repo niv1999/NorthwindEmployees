@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Northwind | Home
+{% endblock title %}
+
+{% block content %}
+    <div class="main-img">
+        <img src="{{ url_for('static', filename='images/employees_icon.png')}}">
+    </div>
+    <div class="main-par">
+        <p>
+            The Northwind Employees website is a comprehensive portal designed for the staff of Northwind Traders, providing a one-stop solution for all employee-related needs and information. It features a user-friendly interface for accessing personal profiles, company updates, and HR resources. The site also includes tools for project management, team collaboration, and internal communication, fostering a connected and efficient workplace environment. Secure and easily navigable, it's an essential tool for enhancing employee engagement and productivity within Northwind Traders.
+        </p>
+    </div>
+{% endblock content %}

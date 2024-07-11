@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    {% if error %}
+        <div class="error">
+            <p class="error-message">
+                {{error}}
+            </p>
+        </div>
+        <hr>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        <label>First Name:</label>
+        <input type="text" name="first_name" class="form-control" value="{{user.first_name}}" required minlength="2" maxlength="20">
+
+        <label>Last Name:</label>
+        <input type="text" name="last_name" class="form-control" value="{{user.last_name}}" required minlength="2" maxlength="30">
+
+        <label>Email:</label>
+        <input type="email" name="email" class="form-control" value="{{user.email}}" required minlength="5" maxlength="100">
+
+        <label>Password:</label>
+        <input type="password" name="password" class="form-control" required minlength="4" maxlength="100">
+
+        <button class="btn btn-primary w-100 register-btn">Register</button>
+    </form>
+</div>
+{% endblock content %}

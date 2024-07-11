@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    {% if error %}
+        <div class="error">
+            <p class="error-message">
+                {{error}}
+            </p>
+        </div>
+        <hr>
+    {% endif %}
+    <form method="post">
+
+        <label>Email:</label>
+        <input type="email" name="email" class="form-control" value="{{credentials.email}}" required minlength="5" maxlength="100">
+
+        <label>Password:</label>
+        <input type="password" name="password" class="form-control" value="{{credentials.password}}" required minlength="4" maxlength="100">
+
+        <button class="btn btn-primary w-100 register-btn">Login</button>
+    </form>
+</div>
+{% endblock content %}

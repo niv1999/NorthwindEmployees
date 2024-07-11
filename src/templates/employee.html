@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{employee.title_of_courtesy}} {{employee.first_name}} {{employee.last_name}}
+{% endblock title %}
+
+{% block content %}
+    <div class="employee-card">
+        <aside class="employee-image">
+            <img src="{{url_for('employees_view.get_image', image_name = (employee.image if employee.image else '---'))}}">
+        </aside>
+        <main class="employee-details">
+            <div class="emp-det-left-container">
+                <ul>
+                    <li>
+                        <span class="category">Full Name:</span>
+                        <span>&nbsp;&nbsp;{{employee.title_of_courtesy}} {{employee.first_name}} {{employee.last_name}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Title:</span>
+                        <span>&nbsp;&nbsp;{{employee.title}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Birth Date:</span>
+                        <span>&nbsp;&nbsp;{{employee.birth_date}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Hire Date:</span>
+                        <span>&nbsp;&nbsp;{{employee.hire_date}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Notes:</span>
+                        <span>&nbsp;&nbsp;{{employee.notes}}</span>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <span class="category">Country Name:</span>
+                        <span>&nbsp;&nbsp;{{employee.country_name}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">City Name:</span>
+                        <span>&nbsp;&nbsp;{{employee.city_name}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Address:</span>
+                        <span>&nbsp;&nbsp;{{employee.address}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Postal Code:</span>
+                        <span>&nbsp;&nbsp;{{employee.postal_code}}</span>
+                    </li>
+                    <hr>
+                    <li>
+                        <span class="category">Phone Number:</span>
+                        <span>&nbsp;&nbsp;{{employee.phone}}</span>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <div class="prev-or-next">
+                {% if previous_id == None %}
+                <a class="btn btn-outline-primary disabled">Previous</a>
+                <a class="btn btn-outline-primary" href="{{url_for('employees_view.one_employee', id=next_id)}}">Next</a>
+                {% elif next_id == None %}
+                <a class="btn btn-outline-primary" href="{{url_for('employees_view.one_employee', id=previous_id)}}">Previous</a>
+                <a class="btn btn-outline-primary disabled">Next</a>
+                {% else %}
+                <a class="btn btn-outline-primary" href="{{url_for('employees_view.one_employee', id=previous_id)}}">Previous</a>
+                <a class="btn btn-outline-primary" href="{{url_for('employees_view.one_employee', id=next_id)}}">Next</a>
+                {% endif %}
+            </div>
+            <div class="bottom-buttons">
+                <a class="btn btn-dark btn-lg" href="{{ url_for('employees_view.employees_list') }}">Back</a>
+                <a class="btn btn-dark btn-lg" href="{{ url_for('employees_view.edit', id = employee.id) }}">Edit</a>
+                <a class="btn btn-dark btn-lg" onclick= "confirmDelete()" href="{{ url_for('employees_view.delete', id = employee.id) }}">Delete</a>
+            </div>
+        </footer>
+    </div>
+{% endblock content %}
